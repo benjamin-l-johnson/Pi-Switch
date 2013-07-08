@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<html>
+<body>
+{% block content %}
+<!div class="text-center">
+<div class="pagination pagination-centered">
+<h1>What lights we have</h1>
+{% for article in views %}
+	<div >
+	<h2><a href="/articles/{{ article.id }}/">{{ article.title }}</a></h2>
+	<p > {{ article.body }}</p>
+	<h4>Is this light turned on?</h4>
+			{% if article.onOff %}
+			<p class="text-warning">Yes</p>
+			{% else %}
+			<p class="text-warning">No</p>
+			{% endif %}
+
+	</div>
+{% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

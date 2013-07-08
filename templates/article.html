@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+<html>
+<body>
+{% block content %}
+{% load static %}
+
+			{% if user.is_authenticated %}
+            <li><p>User logged in</p></li>  
+            {% endif %}
+<input id="artID" type="hidden" name="articleID" value="{{article.id}}">
+<h1>{{ article.title  }}</h1>
+
+<p>{{  article.body }}</p>
+<h2 id="hideHeading">Is this light on?</h2>
+{% if article.onOff %}
+<p class="text-warning" id="hideYes">Yes</p>
+{% else %}
+<p class="text-warning" id="hideNo">No</p>
+{% endif %}
+<h2>Do you want to turn this light on/off?</h2>
+
+<script src="{% static "assets/js/jquery-2.0.0.min.js" %}"></script>
+<script src="{% static "assets/js/ajax1.js" %}"></script>    
+    
+    
+    
+    
+<form action="/articles/search/" method="post">{% csrf_token %}
+    <label class="radio">
+    <input id="id_onOff_0" name="onOff" type="radio" value="True">
+    On
+    </label>
+
+    <label class="radio">
+    <input id="id_onOff_1" name="onOff" type="radio" value="False">
+    Off
+    </label>
+</form>
+
+<ul id="search-results">
+ 
+
+{% endblock %}
+</body>
+</html>

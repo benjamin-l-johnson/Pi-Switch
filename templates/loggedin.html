@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Hi {{full_name}} You are now logged in! </h2>
+	
+	
+	 <h3> Light Number One </h3>
+	
+	<input type="radio" name="light1" value="on">On<br>
+	<input type="radio" name="light1" value="off">Off
+	
+	<h3> Light Number Two </h3>
+	<input type="radio" name="light2" value="on">On<br>
+	<input type="radio" name="light2" value="off">Off
+	<h3> Light Number Three </h3>
+	<input type="radio" name="light3" value="on">On<br>
+	<input type="radio" name="light3" value="off">Off
+	
+	
+	<br>
+	<br>
+	<br>
+	<p>Click <a href="/accounts/logout/">here</a> to logout. </p>
+	
+{% endblock %}
