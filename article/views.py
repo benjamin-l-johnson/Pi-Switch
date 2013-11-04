@@ -12,21 +12,10 @@ from django.core.context_processors import csrf
 from django.contrib.auth import authenticate
 import subprocess
 
-# def Hello(request):
-# 	name = "Ben"
-# 	html = "<html><body>HI %s, this seems to have worked!</body></html>" % name
-# 	return HttpResponse(html)
 
-# def hello_template(request):
-# 	name ="ben"
-# 	t = get_template('index.html')
-# 	html = t.render(Context({'name': name}))
-# 	return HttpResponse(html)
 
 @login_required
 def articles(request):
-	#if request.user.is_authenticated():
-		#if request.method == "POST":
 			
 		language = 'en-us'
 		session_language = 'en-us'
@@ -39,10 +28,7 @@ def articles(request):
 		args['session_language'] = session_language
 
 		return render_to_response('articles.html', args,)
-			#context_instace=RequestContext(request) )
-	#else:
-	#	return render_to_response('invalid_login.html')
-
+		
 @login_required
 def article(request, article_id=1):
 
@@ -68,13 +54,13 @@ def buttonPush(request):
 		a = Light.objects.get(id=article_id)
 		buttonValue = request.POST['search_text']
 		if buttonValue == 'True':
-			p = subprocess.Popen(['sudo','/usr/bin/python2.7','/home/pi//Pi-Switch/lightOn.py'])
+			p = subprocess.Popen(['sudo','/home/pi/on.sh'])
 			a.onOff = True
 			a.save()
 			html = "<html><body>Light is now on</body></html>"
 
 		else:
-			p = subprocess.Popen(['sudo','/usr/bin/python2.7','/home/pi/Pi-Switch/lightOff.py'])
+			p = subprocess.Popen(['sudo','/home/pi/off.sh'])
 			a.onOff = False
 			a.save()
 			html = "<html><body>Light is now off</body></html>"
